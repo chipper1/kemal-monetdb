@@ -1,4 +1,4 @@
-require "monetdb"
+require "crystal-monetdb-libmapi"
 #require "pool/connection"
 require "http"
 
