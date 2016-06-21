@@ -37,7 +37,7 @@ class Kemal::MonetDB < HTTP::Handler
   end
 
   def call(context)
-    context.mysql = @mysql
+    context.mysql = @monetdb
     call_next(context)
   end
 end
