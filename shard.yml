@@ -1,0 +1,15 @@
+name: kemal-monetdb
+version: 0.1.2
+
+dependencies:
+  mysql:
+    github: puppetpies/crystal-monetdb-libmapi
+    branch: master
+  pool:
+    github: ysbaddaden/pool
+    branch: master
+
+authors:
+  - Brian Hood <brianh6854@googlemail.com>
+
+license: MIT
