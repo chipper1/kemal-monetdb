@@ -1,32 +1,39 @@
-require "mysql"
-require "pool/connection"
+require "monetdb"
+#require "pool/connection"
 require "http"
 
 macro conn
-  env.mysql.connection
+  env.monetdb.connect
 end
 
 macro release
-  env.mysql.release
+  env.monetdb.release
 end
 
-def mysql_connect(options, capacity = 25, timeout = 0.1)
-  Kemal.config.add_handler Kemal::MySQL.new(options, capacity, timeout)
+def monetdb_connect(options) #, capacity = 25, timeout = 0.1)
+  Kemal.config.add_handler Kemal::MonetDB.new(options, capacity, timeout)
 end
 
 class HTTP::Server::Context
-  @mysql : ConnectionPool(MySQL::Connection) | Nil
-  property! mysql
+  @monetdb : MonetDBMAPI::Mapi # | Nil
+  property! monetdb
 end
 
-class Kemal::MySQL < HTTP::Handler
-  @mysql : ConnectionPool(MySQL::Connection)
-  getter mysql
+class Kemal::MonetDB < HTTP::Handler
+  @monetdb : MonetDBMAPI::Mapi
+  getter monetdb
 
-  def initialize(options={} of String => String, capacity = 25, timeout = 0.1)
-    @mysql = ConnectionPool.new(capacity: capacity, timeout: timeout) do
-      ::MySQL.connect(options["host"], options["user"], options["password"], options["db"], 3306_u16, nil)
-    end
+  def initialize(options={} of String => String) #, capacity = 25, timeout = 0.1)
+    #@monetdb = ConnectionPool.new(capacity: capacity, timeout: timeout) do
+    #  ::MonetDB::Client.connect(options["host"], options["user"], options["password"], options["db"], 3306_u16, nil)
+    #end
+    @monetdb = MonetDB::Client.new
+    @monetdb.host = options["host"]
+    @monetdb.username = options["user"]
+    @monetdb.password = options["password"]
+    @monetdb.port = options["port"].to_i
+    @monetdb.db = options["db"]
+    @monetdb.connect
   end
 
   def call(context)
