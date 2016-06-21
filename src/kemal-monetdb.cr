@@ -31,7 +31,6 @@ class Kemal::MonetDB < HTTP::Handler
     @monetdb.host = options["host"]
     @monetdb.username = options["user"]
     @monetdb.password = options["password"]
-    @monetdb.port = options["port"].to_i
     @monetdb.db = options["db"]
     @monetdb.connect
   end
