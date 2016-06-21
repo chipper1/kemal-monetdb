@@ -2,7 +2,7 @@ name: kemal-monetdb
 version: 0.1.2
 
 dependencies:
-  mysql:
+  monetdb:
     github: puppetpies/crystal-monetdb-libmapi
     branch: master
   pool:
