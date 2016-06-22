@@ -15,20 +15,20 @@ def monetdb_connect(options) #, capacity = 25, timeout = 0.1)
 end
 
 class HTTP::Server::Context
-  @monetdb : MonetDBMAPI::Mapi | Nil
+  @monetdb : MonetDB::Client | Nil
   property! monetdb
 end
 
 class Kemal::MonetDB < HTTP::Handler
-  @monetdb : MonetDBMAPI::Mapi
+  @monetdb : MonetDB::Client
   getter monetdb
 
-  def initialize(options={} of String => String | UInt16) #, capacity = 25, timeout = 0.1)
+  def initialize(options={} of String => String) #, capacity = 25, timeout = 0.1)
     @monetdb = MonetDB::Client.new
     @monetdb.host = options["host"]
     @monetdb.username = options["user"]
     @monetdb.password = options["password"]
-    @monetdb.port = options["port"]
+    @monetdb.port = options["port"].to_i
     @monetdb.db = options["db"]
     @monetdb.connect
   end
