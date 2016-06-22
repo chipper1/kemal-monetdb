@@ -25,9 +25,10 @@ require "kemal-monetdb"
 
 CONN_OPTS = {
   "host" => "127.0.0.1",
-  "user" => "root",
-  "password" => "",
-  "db" => "your_db"
+  "user" => "monetdb",
+  "password" => "monetdb",
+  "port" => 50000,
+  "db" => "test"
 }
 
 monetdb_connect CONN_OPTS
