@@ -42,6 +42,7 @@ get "/" do |env|
   users
 end
 
+```
 ## Development
 
 TODO: Test / Implement the connection pool as in kemal-mysql
