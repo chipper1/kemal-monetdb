@@ -9,7 +9,7 @@ This is currently experimental.
 
 Add this to your application's `shard.yml`:
 
-````
+```yaml
 dependencies:
   kemal-monetdb:
     github: puppetpies/kemal-monetdb
@@ -19,9 +19,7 @@ dependencies:
 ## Usage
 
 
-````
-
-
+```crystal
 require "kemal"
 require "kemal-monetdb"
 
