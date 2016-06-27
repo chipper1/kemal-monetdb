@@ -24,7 +24,7 @@ class Kemal::MonetDB < HTTP::Handler
   getter monetdb
 
   def initialize(options={} of String => String) #, capacity = 25, timeout = 0.1)
-    @monetdb = MonetDB::Client.new
+    @monetdb = MonetDB::ClientJSON.new
     @monetdb.host = options["host"]
     @monetdb.username = options["user"]
     @monetdb.password = options["password"]
