@@ -15,12 +15,12 @@ def monetdb_connect(options) #, capacity = 25, timeout = 0.1)
 end
 
 class HTTP::Server::Context
-  @monetdb : MonetDB::Client | Nil
+  @monetdb : MonetDB::ClientJSON | Nil
   property! monetdb
 end
 
 class Kemal::MonetDB < HTTP::Handler
-  @monetdb : MonetDB::Client
+  @monetdb : MonetDB::ClientJSON
   getter monetdb
 
   def initialize(options={} of String => String) #, capacity = 25, timeout = 0.1)
