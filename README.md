@@ -27,7 +27,7 @@ CONN_OPTS = {
   "host" => "127.0.0.1",
   "user" => "monetdb",
   "password" => "monetdb",
-  "port" => 50000,
+  "port" => "50000",
   "db" => "test"
 }
 
