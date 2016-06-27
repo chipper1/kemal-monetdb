@@ -1,4 +1,5 @@
 require "crystal-monetdb-libmapi"
+require "crystal-monetdb-libmapi/monetdb_data"
 require "pool/connection"
 require "http"
 
