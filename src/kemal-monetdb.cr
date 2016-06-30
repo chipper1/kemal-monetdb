@@ -3,7 +3,7 @@ require "crystal-monetdb-libmapi/monetdb_data"
 require "pool/connection"
 require "http"
 
-macro conn
+macro connect
   env.monetdb.connect
 end
 
@@ -16,8 +16,7 @@ def monetdb_connect(options) #, capacity = 25, timeout = 0.1)
 end
 
 class HTTP::Server::Context
-  @monetdb : MonetDB::ClientJSON | Nil
-  property! monetdb
+  property! monetdb : MonetDB::ClientJSON | Nil
 end
 
 class Kemal::MonetDB < HTTP::Handler
